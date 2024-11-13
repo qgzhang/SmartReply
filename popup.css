@@ -1,0 +1,7 @@
+/* popup.css */
+body {
+    width: 400px; /* Set the width of the popup */
+    height: 1000px; /* Set the height of the popup */
+    overflow: hidden; /* Optional: Prevents scrollbars */
+    margin: 0; /* Removes default margin */
+}

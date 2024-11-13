@@ -1,0 +1,39 @@
+{
+	"manifest_version": 3,
+
+	"name": "Teams Copilot",
+	"description": "Extract chat from the Microsoft Teams Web and suggest responses using OpenAI's GPT.",
+	"version": "1.0",
+	"author": "Qianggong (Norman) Zhang",
+
+	"background": {
+		"service_worker": "background.js"
+	},
+
+	"permissions": [
+		"activeTab",
+		"scripting",
+		"tabs",
+		"storage"
+	],
+
+	"host_permissions": [
+    	"https://teams.microsoft.com/*"
+    ],
+
+	"action": {
+		"default_icon": "icons/teams.png",
+		"default_popup": "popup.html",
+		"default_title": "Your Extension"
+	},
+
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": false
+	},
+
+	"icons": {
+		"32": "icons/teams.png"
+	}
+}
+

@@ -1,0 +1,42 @@
+<!-- options.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extension Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 400px;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Extension Options</h1>
+
+    <label for="apiKey">OpenAI API Key:</label>
+    <input type="text" id="apiKey" placeholder="Enter your OpenAI API Key">
+
+    <label for="userName">Your Microsoft Teams User Name:</label>
+    <input type="text" id="userName" placeholder="Enter your Microsoft Teams User Name">
+
+    <button id="save">Save</button>
+
+    <script src="options.js"></script>
+</body>
+</html>
