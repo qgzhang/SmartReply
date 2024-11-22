@@ -155,16 +155,24 @@ window.addEventListener('load', function () {
 
 // Function to be injected into the page to extract the text from the textarea
 function extractTextFromTextarea() {
-    const textarea = document.querySelector('[data-tid="ckeditor"][contenteditable="true"]');
+    // For Teams
+    textarea = document.querySelector('[data-tid="ckeditor"][contenteditable="true"]');
     if (textarea) {
         return textarea.textContent.trim();
     }
+
+    // For Telegram
+    textarea = document.querySelector('div.input-message-input');
+    if (textarea) {
+        return textarea.textContent.trim();
+    }
+
     return null;
 }
 
 // Function to be injected into the page to update the text in the textarea
 function updateTextareaText(newText) {
-    const textarea = document.querySelector('[data-tid="ckeditor"][contenteditable="true"]');
+    textarea = document.querySelector('[data-tid="ckeditor"][contenteditable="true"]');
     if (textarea) {
         const editorInstance = textarea.ckeditorInstance || textarea.ckeditor || textarea.dataset.ckeditorInstance;
         if (editorInstance) {
@@ -173,7 +181,15 @@ function updateTextareaText(newText) {
         } else {
             console.warn('CKEditor instance not found on textarea.');
         }
-    } else {
+    }
+    else {
+        textarea = document.querySelector('div.input-message-input');
+    }
+
+    if (textarea) {
+        textarea.textContent = newText;
+    }
+    else {
         console.warn('textarea div not found.');
     }
 }
