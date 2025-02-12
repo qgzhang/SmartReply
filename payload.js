@@ -2,52 +2,65 @@
 
 // Function to extract chat content
 function extractChatContent() {
-    const chatContainer = document.querySelector('div[data-tid="message-pane-list-runway"]');
-
-    // Verify that the chat container exists
-    if (!chatContainer) {
-        console.warn("This does not appear to be a Microsoft Teams Chat window");
-        return [];
+    // Try to detect if this is a Microsoft Teams chat
+    const teamsChatContainer = document.querySelector('div[data-tid="message-pane-list-runway"]');
+    if (teamsChatContainer) {
+        return extractTeamsChat(teamsChatContainer);
     }
 
+    // Try to detect if this is a Telegram chat
+    const telegramChatContainer = document.querySelector('div.message');
+    if (telegramChatContainer) {
+        return extractTelegramChat();
+    }
+
+    console.warn("This does not appear to be a recognized chat window");
+    return [];
+}
+
+function extractTeamsChat(chatContainer) {
     const chatItems = chatContainer.querySelectorAll('div[data-tid="chat-pane-item"]');
     const chatHistory = [];
 
     chatItems.forEach((chatItem) => {
-        // Extract sender, timestamp, and message content from each chat item
-
-        // Sender
         const senderElement = chatItem.querySelector('span[data-tid="message-author-name"]');
         const sender = senderElement ? senderElement.innerText : "Unknown Sender";
 
-        // Timestamp
         const timestampElement = chatItem.querySelector('time');
         const timestamp = timestampElement ? timestampElement.getAttribute('aria-label') : "Unknown Time";
 
-        // Message Content
         const messageContentElement = chatItem.querySelector('div[data-tid="chat-pane-message"]');
+        let messageContent = messageContentElement ? extractTextWithSpans(messageContentElement).trim() : "No Content";
 
-        let messageContent = '';
-        if (messageContentElement) {
-            messageContent = extractTextWithSpans(messageContentElement).trim();
+        if (sender !== "Unknown Sender" || timestamp !== "Unknown Time" || messageContent !== "No Content") {
+            chatHistory.push({ sender, timestamp, content: messageContent });
+        }
+    });
+
+    return chatHistory;
+}
+
+function extractTelegramChat() {
+    const chatItems = document.querySelectorAll('div.message.spoilers-container');
+    const chatHistory = [];
+
+    chatItems.forEach((chatItem) => {
+        let messageContent = "";
+        const translatableMessage = chatItem.querySelector('span.translatable-message');
+        if (translatableMessage) {
+            messageContent = translatableMessage.innerText.trim();
         } else {
-            messageContent = "No Content";
+            messageContent = chatItem.childNodes[0]?.nodeValue?.trim() || "No Content";
         }
 
-        // Check if the entry is invalid and should be excluded
-        if (sender === "Unknown Sender" && timestamp === "Unknown Time" && messageContent === "No Content") {
-            // Skip this entry
-            return;
+        const timestampElement = chatItem.querySelector('span.i18n');
+        const timestamp = timestampElement ? timestampElement.innerText.trim() : "Unknown Time";
+
+        const sender = translatableMessage ? "Peer" : "Myself";
+
+        if (messageContent !== "No Content") {
+            chatHistory.push({ sender, timestamp, content: messageContent });
         }
-
-        // Construct a message object
-        const message = {
-            sender: sender,
-            timestamp: timestamp,
-            content: messageContent
-        };
-
-        chatHistory.push(message);
     });
 
     return chatHistory;
