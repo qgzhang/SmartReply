@@ -47,7 +47,12 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.scripting.executeScript(
         {
             target: { tabId: tabs[0].id },
-            files: ['payload.js']
+            files: [
+                'platforms/teams.js',
+                'platforms/telegram.js',
+                'platforms/slack.js',
+                'payload.js'
+            ]
         },
         () => {
             if (chrome.runtime.lastError) {
@@ -88,7 +93,6 @@ window.addEventListener('load', function () {
                         target: { tabId: tabs[0].id },
                         func: updateTextareaText,
                         args: [newText],
-                        world: 'MAIN',
                     },
                     () => {
                         if (chrome.runtime.lastError) {
@@ -155,41 +159,31 @@ window.addEventListener('load', function () {
 
 // Function to be injected into the page to extract the text from the textarea
 function extractTextFromTextarea() {
-    // For Teams
-    textarea = document.querySelector('[data-tid="ckeditor"][contenteditable="true"]');
-    if (textarea) {
-        return textarea.textContent.trim();
+    if (!window.platformModules) return null;
+    for (const mod of window.platformModules) {
+        try {
+            if (mod.isActivePage && mod.isActivePage() && mod.getInputText) {
+                return mod.getInputText();
+            }
+        } catch (e) {
+            console.error(e);
+        }
     }
-
-    // For Telegram
-    textarea = document.querySelector('div.input-message-input');
-    if (textarea) {
-        return textarea.textContent.trim();
-    }
-
     return null;
 }
 
 // Function to be injected into the page to update the text in the textarea
 function updateTextareaText(newText) {
-    textarea = document.querySelector('[data-tid="ckeditor"][contenteditable="true"]');
-    if (textarea) {
-        const editorInstance = textarea.ckeditorInstance || textarea.ckeditor || textarea.dataset.ckeditorInstance;
-        if (editorInstance) {
-            // Use CKEditor's setData method to update the content
-            editorInstance.setData(newText);
-        } else {
-            console.warn('CKEditor instance not found on textarea.');
+    if (!window.platformModules) return;
+    for (const mod of window.platformModules) {
+        try {
+            if (mod.isActivePage && mod.isActivePage() && mod.setInputText) {
+                mod.setInputText(newText);
+                return;
+            }
+        } catch (e) {
+            console.error(e);
         }
     }
-    else {
-        textarea = document.querySelector('div.input-message-input');
-    }
-
-    if (textarea) {
-        textarea.textContent = newText;
-    }
-    else {
-        console.warn('textarea div not found.');
-    }
+    console.warn('textarea div not found.');
 }
