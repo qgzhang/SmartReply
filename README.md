@@ -1,72 +1,68 @@
-# TeamsCopilot
+# SmartReply
 
-**TeamsCopilot** is a Chrome extension designed to enhance your Microsoft Teams Web experience by using OpenAI's GPT APIs to suggest clear, professional, and contextually appropriate messages. By extracting recent chat history as the conversational context, TeamsCopilot generates smart message suggestions that fit seamlessly into your conversation flow. Whether you need polished replies, help completing a thought, or just the perfect opening line, TeamsCopilot has you covered.
+**SmartReply** is a Chrome extension that enhances your messaging productivity across Microsoft Teams, Slack, and Telegram Web. Powered by OpenAI's GPT models (like GPT-4o), SmartReply offers context-aware suggestions, polished completions, and tone-customizable replies—so you can communicate faster and more effectively.
 
-## Features
+## ✨ Key Features
 
-- **Context-Aware Suggestions**: Extracts chat history to provide contextually relevant responses.
-- **Keyword-Based Input**: Generate messages based on a few keywords to guide the tone and intent.
-- **Proofreading and Completion**: Input a draft for TeamsCopilot to proofread and enhance, or get a complete response when you leave the input blank.
-- **Adjustable Tone**: Use square-bracket instructions like `[formal]` or `[casual]` to control the tone of the response.
-- **Quick Copy-Paste**: Click on a suggestion, and it will automatically copy to the Microsoft Teams input area for easy editing or sending.
+- **Multi-Platform Support**: Works seamlessly with Microsoft Teams, Slack, and Telegram (Web versions).
+- **Context-Aware Suggestions**: Automatically extracts recent chat history to generate relevant replies.
+- **Keyword-Guided Generation**: Enter keywords to guide SmartReply's response direction and intent.
+- **Proofreading & Completion**: Paste a draft message to refine or complete it intelligently.
+- **Tone Control**: Add tone/style tags like `[formal]`, `[friendly]`, `[concise]` for customized results.
+- **One-Click Copy**: Click any suggestion to instantly copy it to your message input area.
 
-## Installation and Setup
+## 🚀 Installation & Setup
 
-1. **Install the Extension**: Download and add TeamsCopilot to your Chrome browser.
-2. **Configure API Key and Name**:
-   - Right-click the TeamsCopilot icon in the toolbar and select **Options**.
-   - Enter your OpenAI API key and your display name as it appears in Microsoft Teams.
-   - If you leave the name blank, you'll be prompted to set it when generating suggestions.
-   
+### 1. Install SmartReply
+Download and add the extension from the Chrome Web Store or load it via Developer Mode in Chrome.
 
+### 2. Configure Settings
+- Right-click the SmartReply icon and select **Options**.
+- Enter your:
+  - **OpenAI API key**
+  - **Display name** (as used in your chat platform)
 
-   <!-- ![Options Page](./assets/options.jpg) -->
-   <img src="./assets/options.jpg" alt="Options Page" width="400" style="padding-top: 30px; padding-bottom: 30px;">
+<img src="./assets/options.jpg" alt="Options Page" width="400" style="padding-top: 30px; padding-bottom: 30px;">
 
+### 3. Start Using
+- Navigate to the web version of Microsoft Teams, Slack, or Telegram.
+- Click the SmartReply icon in the Chrome toolbar to launch the popup and view recent messages.
+- Use the **"Suggest Input"** button to generate AI-powered message suggestions.
 
-3. **Start Using TeamsCopilot**:
-   - Left-click the TeamsCopilot icon to open the dropdown window and access the latest chat history.
+## 💡 Usage Guide
 
-## Usage Guide
+### Modes of Input
+- **No Input**: Automatically generates a context-aware message from chat history.
+- **Keywords Only**: Type keywords (e.g., `project deadline [formal]`) to shape the reply.
+- **Draft Input**: Paste a rough message to improve or complete it.
 
-1. **Opening the TeamsCopilot Window**:
-   - Click on the extension icon to view the dropdown, where recent chat messages are displayed along with an **"Suggest Input"** button.
+### Tone Modifiers
+Use square-bracket tags like:
+- `[formal]`
+- `[casual]`
+- `[friendly]`
+- `[concise]`
+- `[apologetic]`
 
+### Interacting with Suggestions
+- Up to three suggestions are generated.
+- Click any suggestion to copy it into the current chat input box.
 
+## 💬 Examples
 
-    <!-- ![TeamsCopilot](./assets/TeamsCopilot.jpg) -->
-    <img src="./assets/TeamsCopilot.jpg" alt="TeamsCopilot" width="800" style="padding-top: 30px; padding-bottom: 30px;">
+| Input | Output Example |
+|-------|----------------|
+| *(empty)* | “Thanks for the update! Let me know if you need anything else.” |
+| `meeting summary [concise]` | “Meeting concluded. Key outcomes: budget approved, deadline extended to July 10.” |
+| `Can you explain` | “Can you explain how this change affects our current workflow?” |
 
+## 🛠️ Roadmap
 
+- [ ] Support for WhatsApp Web
+- [ ] Save favorite responses or templates
+- [ ] UI themes and personalization
+- [ ] Team-based tone presets
 
-2. **Generating Suggestions**:
-   - **Empty Input**: Pressing "Suggest Input" without typing anything will prompt TeamsCopilot to generate a sensible continuation of the conversation based on the latest chat context.
-   - **Keyword Input**: Type in a few keywords to guide the AI's response. For example, entering "deadline update" will produce suggestions focused on discussing project deadlines.
-   - **Complete Draft**: Enter a full or partial message if you want TeamsCopilot to refine or complete your text.
+## 📄 License
 
-3. **Adding Tone or Style Instructions**:
-   - To adjust the tone or style, include instructions in square brackets, such as `[formal]`, `[casual]`, or `[concise]`. TeamsCopilot will interpret these to tailor its response to your preference.
-
-4. **Viewing and Selecting Suggestions**:
-   - TeamsCopilot generates up to three suggestions by default.
-   - Click on a suggestion to copy and paste it directly into the Microsoft Teams input area. You can make any final edits before sending.
-
-## Example Commands
-
-- **Empty**: [Click "Suggest Input"] → *TeamsCopilot suggests contextually appropriate message.*
-- **Keywords**: "project update [formal]" → *Generates a formal update message about the project.*
-- **Draft Input**: "Could you provide more details on" → *TeamsCopilot completes the sentence in a polished, professional tone.*
-
-## Running Tests
-
-Node's built-in test runner is used for unit tests. From the repository root, run:
-
-```bash
-node --test
-```
-
-All tests should pass and you'll see a summary of the results in the terminal.
-
-## License
-
-This project is licensed under the Apache License 2.0.
+This project is licensed under the [Apache License 2.0](LICENSE).
