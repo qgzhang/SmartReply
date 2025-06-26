@@ -20,7 +20,11 @@ async function loadSettings() {
 async function openai_generateVariations(chat_history, text) {
     const settings = await loadSettings();
     const apiKey = settings.apiKey;
-    const userName = settings.userName || 'Norman Zhang'; // Default to 'You' if userName is not set
+    const userName = settings.userName || '';
+
+    if (!userName) {
+        throw new Error('Teams display name not found. Please set it in the extension options.');
+    }
 
     if (!apiKey) {
         throw new Error('OpenAI API key not found. Please set it in the extension options.');

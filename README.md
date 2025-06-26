@@ -16,6 +16,7 @@
 2. **Configure API Key and Name**:
    - Right-click the TeamsCopilot icon in the toolbar and select **Options**.
    - Enter your OpenAI API key and your display name as it appears in Microsoft Teams.
+   - If you leave the name blank, you'll be prompted to set it when generating suggestions.
    
 
 
