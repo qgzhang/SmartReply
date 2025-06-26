@@ -3,7 +3,7 @@
 
 	"name": "Teams Copilot",
 	"description": "Extract chat from the Microsoft Teams Web and suggest responses using OpenAI's GPT.",
-	"version": "1.0",
+        "version": "1.1",
 	"author": "Qianggong (Norman) Zhang",
 
 	"background": {
@@ -17,8 +17,10 @@
 		"storage"
 	],
 
-	"host_permissions": [
-    	"https://teams.microsoft.com/*"
+        "host_permissions": [
+        "https://teams.microsoft.com/*",
+        "https://web.telegram.org/*",
+        "https://app.slack.com/*"
     ],
 
 	"action": {
