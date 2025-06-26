@@ -1,8 +1,8 @@
 {
 	"manifest_version": 3,
 
-	"name": "Teams Copilot",
-	"description": "Extract chat from the Microsoft Teams Web and suggest responses using OpenAI's GPT.",
+	"name": "SmartReply",
+	"description": "AI-powered reply suggestions for Teams, Slack, and Telegram (more to be added).",
         "version": "1.1",
 	"author": "Qianggong (Norman) Zhang",
 
