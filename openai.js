@@ -105,3 +105,8 @@ async function openai_generateVariations(chat_history, text) {
         throw new Error('No response from OpenAI API');
     }
 }
+
+// Export functions when running in a Node environment for testing purposes
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { openai_generateVariations, loadSettings };
+}

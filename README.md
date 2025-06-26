@@ -57,6 +57,16 @@
 - **Keywords**: "project update [formal]" → *Generates a formal update message about the project.*
 - **Draft Input**: "Could you provide more details on" → *TeamsCopilot completes the sentence in a polished, professional tone.*
 
+## Running Tests
+
+Node's built-in test runner is used for unit tests. From the repository root, run:
+
+```bash
+node --test
+```
+
+All tests should pass and you'll see a summary of the results in the terminal.
+
 ## License
 
 This project is licensed under the Apache License 2.0.
