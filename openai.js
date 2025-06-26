@@ -87,6 +87,10 @@ async function openai_generateVariations(chat_history, text) {
         }),
     });
 
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+
     const data = await response.json();
 
     if (data.error) {
