@@ -20,7 +20,8 @@
         "host_permissions": [
         "https://teams.microsoft.com/*",
         "https://web.telegram.org/*",
-        "https://app.slack.com/*"
+        "https://app.slack.com/*",
+		"https://api.openai.com/*"
     ],
 
 	"action": {

@@ -12,6 +12,7 @@ chrome.runtime.onMessage.addListener(function (message) {
 
 // Function to display the latest five chat messages in the popup UI
 function displayLatestChatMessages() {
+    console.log("displayLatestChatMessages")
     const chatContainer = document.getElementById('chat-messages');
     if (!chatContainer) return;
 
@@ -48,6 +49,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         {
             target: { tabId: tabs[0].id },
             files: [
+                // 'openai.js',
                 'platforms/teams.js',
                 'platforms/telegram.js',
                 'platforms/slack.js',
@@ -107,6 +109,8 @@ window.addEventListener('load', function () {
 
     // Function to generate text variations and append them to the popup UI
     async function generateTextVariations(chat_history, input_text) {
+        // console.log("popup.js, generateTextVariations(), input_text=")
+        // console.log(input_text)
         // Clear previous variations
         variationsContainer.innerHTML = '';
 		// Unpack chatHistory array into a single string
@@ -119,12 +123,12 @@ window.addEventListener('load', function () {
 				variationsContainer.appendChild(createTextElement(variation));
 			});
 		} catch (error) {
-			console.error(error);
-			// Show an error message to the user
-			const errorElement = document.createElement('div');
-			errorElement.innerText = 'Error generating text variations: ' + error.message;
-			variationsContainer.appendChild(errorElement);
-		}
+            console.error("Error in generateTextVariations:", error);
+            const errorElement = document.createElement('div');
+            errorElement.innerText = 'Error generating text variations: ' + (error?.message || String(error));
+            variationsContainer.appendChild(errorElement);
+        }
+
     }
 
     // Button click event

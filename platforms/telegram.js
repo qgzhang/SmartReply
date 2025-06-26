@@ -1,9 +1,11 @@
 (function() {
     const module = {
         isActivePage() {
+            console.log("Telegram isActivePage")
             return !!document.querySelector('div.input-message-input');
         },
         extractChatHistory() {
+            console.log("Telegram extractChatHistory")
             const chatItems = document.querySelectorAll('div.message.spoilers-container');
             const chatHistory = [];
             chatItems.forEach((chatItem) => {
@@ -24,10 +26,13 @@
             return chatHistory;
         },
         getInputText() {
+            console.log("Telegram get input")
             const textarea = document.querySelector('div.input-message-input');
+            console.log("Telegram Input:",textarea.textContent.trim())
             return textarea ? textarea.textContent.trim() : null;
         },
         setInputText(newText) {
+            console.log("Telegram set input")
             const textarea = document.querySelector('div.input-message-input');
             if (textarea) {
                 textarea.textContent = newText;

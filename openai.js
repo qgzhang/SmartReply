@@ -87,8 +87,10 @@ async function openai_generateVariations(chat_history, text) {
         }),
     });
 
+
     if (!response.ok) {
-        throw new Error(response.statusText);
+        const errBody = await response.text();
+        throw new Error(`HTTP ${response.status}: ${response.statusText}\n${errBody}`);
     }
 
     const data = await response.json();
@@ -105,6 +107,20 @@ async function openai_generateVariations(chat_history, text) {
         throw new Error('No response from OpenAI API');
     }
 }
+
+
+async function openai_generateVariations1(chat_history, text) {
+    console.log("Dummy openai_generateVariations1 called");
+    console.log("Chat history:", chat_history);
+    console.log("Input text:", text);
+
+    return [
+        `Dummy Variation 1: ${text}`,
+        `Dummy Variation 2: ${text}`,
+        `Dummy Variation 3: ${text}`
+    ];
+}
+
 
 // Export functions when running in a Node environment for testing purposes
 if (typeof module !== 'undefined' && module.exports) {
